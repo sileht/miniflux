@@ -5,21 +5,26 @@
     var queue_length = 5;
 
 
-    function mark_as_read(item_id)
+    function mark_as_read(item_ids)
     {
         var request = new XMLHttpRequest();
 
         request.onload = function() {
-
-            var article = document.getElementById("item-" + item_id);
-
-            if (article) {
-
-                article.style.display = "none";
+            $('html, body').animate({scrollTop:0}, 400)
+            for (var i in item_ids) {
+                item_id = item_ids[i]
+                var article = document.getElementById("item-" + item_id);
+                if (article) {
+                    $(article).animate({opacity:0, height:0,margin:0}, {
+                        duration: 400,
+                        complete: function() {
+                            $(this).hide()
+                        }
+                    })
+                }
             }
         };
-
-        request.open("POST", "?action=read&id=" + item_id, true);
+        request.open("POST", "?action=read_multi&ids[]=" + item_ids.join("&ids[]="), true);
         request.send();
     }
 
@@ -155,15 +160,11 @@
                     break;
                 case 'mark-read':
                     var item_id = e.target.getAttribute("data-item-id");
-                    mark_as_read(item_id);
+                    mark_as_read([item_id]);
                     break;
                 case 'mark-previous-read':
-                    var items_id = e.target.getAttribute("data-items-id").split(" ");
-                    for (var i in items_id) {
-                        item_id = items_id[i]
-                        mark_as_read(item_id);
-                    }
-                    document.body.scrollTop = document.documentElement.scrollTop = 0;
+                    var item_ids = e.target.getAttribute("data-items-id").split(" ");
+                    mark_as_read(item_ids);
                     break;
             }
         }

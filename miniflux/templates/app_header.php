@@ -6,6 +6,7 @@
         <title>miniflux</title>
         <link href="./assets/css/app.css?v<?= filemtime('assets/css/app.css') ?>" rel="stylesheet" media="screen">
         <script type="text/javascript" src="./assets/js/app.js?v<?= filemtime('assets/js/app.js') ?>" defer></script>
+        <script type="text/javascript" src="./assets/js/jquery-1.9.1.min.js?v<?= filemtime('assets/js/jquery-1.9.1.min.js') ?>" defer></script>
     </head>
     <body>
         <header>

@@ -97,6 +97,15 @@ Router\get_action('read', function() {
     )));
 });
 
+Router\post_action('read_multi', function() {
+
+    $ids = Request\param('ids');
+    foreach( $ids as $id){
+        Model\set_item_read($id);
+    }
+
+    Response\json(array('Ok'));
+});
 
 Router\post_action('read', function() {
 
