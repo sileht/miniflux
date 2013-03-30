@@ -163,6 +163,7 @@
                         item_id = items_id[i]
                         mark_as_read(item_id);
                     }
+                    document.body.scrollTop = document.documentElement.scrollTop = 0;
                     break;
             }
         }
