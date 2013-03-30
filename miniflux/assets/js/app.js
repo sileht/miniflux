@@ -157,6 +157,13 @@
                     var item_id = e.target.getAttribute("data-item-id");
                     mark_as_read(item_id);
                     break;
+                case 'mark-previous-read':
+                    var items_id = e.target.getAttribute("data-items-id").split(" ");
+                    for (var i in items_id) {
+                        item_id = items_id[i]
+                        mark_as_read(item_id);
+                    }
+                    break;
             }
         }
     };

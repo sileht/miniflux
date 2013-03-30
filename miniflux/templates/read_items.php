@@ -14,11 +14,11 @@
     <section class="items">
     <?php foreach ($items as $item): ?>
         <article>
-            <h2><a href="?action=show&amp;id=<?= urlencode($item['id']) ?>"><?= Helper\escape($item['title']) ?></a></h2>
+            <h2><a href="<?= $item['url'] ?>" rel="noreferrer" target="_blank" data-item-id="<?= urlencode($item['id']) ?>" data-action="mark-read"><?= Helper\escape($item['title']) ?></a></h2>
             <p>
                 <?= Helper\get_host_from_url($item['url']) ?> |
                 <?= date('l, j F Y H:i', $item['updated']) ?> |
-                <a href="<?= $item['url'] ?>" rel="noreferrer" target="_blank">direct link</a>
+                <a href="?action=read&amp;id=<?= urlencode($item['id']) ?>">embedded link</a> |
             </p>
         </article>
     <?php endforeach ?>
